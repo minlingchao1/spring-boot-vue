@@ -4,5 +4,5 @@ import config from '../config';
 const { port } = config;
 
 export default axios.create({
-	baseURL: `http://localhost:${port}/api/`
+	baseURL: `http://localhost:${port}/`
 });

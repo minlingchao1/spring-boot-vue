@@ -3,7 +3,7 @@
 		<header>
 			<h4>{{post.name}}</h4>
 		</header>
-		<p>{{post.content}}</p>
+		<p>{{post.content | truncate(100)}}</p>
 		<footer class="is-right">
 			<router-link  class="button primary" :to="{ path: link }">Read More</router-link>
 		</footer>

@@ -23,8 +23,7 @@ export default {
 	async created () {
 		const slug = this.$route.params.slug;
 		const response = await PostsService.getPostBySlug(slug);
-		console.log(response)
-		//	this.post = response.data;
+		this.post = response.data[0];
 	}
 };
 </script>

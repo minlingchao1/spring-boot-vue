@@ -20,25 +20,12 @@ export default {
 	},
 	data() {
 		return {
-			posts: [
-				{
-					id: 1,
-					name: 'Learn Vue.je',
-					content: 'Lorem ipsum dolor sit amet...',
-					slug: 'adsasdasdas'
-				},
-				{
-					id: 2,
-					name: 'Spring Boot Applications for Dummies',
-					content: 'Sit amet elis dolor lorem',
-					slug: 'cxzczczccxz'
-				}
-			]
+			posts: []
 		}
 	},
 	async created () {
-		const posts = await PostsService.getAll();
-		console.log(posts);
+		const response = await PostsService.getAll();
+		this.posts = response.data;
 	}
 };
 </script>
