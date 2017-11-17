@@ -6,7 +6,7 @@ class Posts {
 	}
 
 	static getPostBySlug(slug) {
-		const url = `posts/?slug=${slug}`; 
+		const url = `posts?slug=${slug}`; 
 		return Api.get(url);
 	}
 

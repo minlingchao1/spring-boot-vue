@@ -8,15 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/posts")
+@RequestMapping(value="/api")
 public class PostController {
 
     @Autowired
     private PostService postService;
 
     @CrossOrigin()
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(value="/posts", method= RequestMethod.GET)
     List<Post> findAll(){
         return postService.findAll();
+    }
+
+    @CrossOrigin()
+    @RequestMapping(value="/posts", method= RequestMethod.GET, params={"slug"})
+    Post findBySlug(@RequestParam(required = false) String slug){
+        return postService.findBySlug(slug);
+    }
+
+    @CrossOrigin()
+    @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
+    Post findOne(@PathVariable(value = "id") Long id) {
+        return postService.findOne(id);
     }
 }

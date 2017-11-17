@@ -29,6 +29,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> findLatest5() {
         List<Post> posts = new ArrayList<>();
         Iterable<Post> results = this.repository.findAll();
+        results.forEach(room -> {
+            posts.add(room);
+        });
         return posts.stream()
                 .limit(5)
                 .collect(Collectors.toList());
@@ -36,7 +39,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post findBySlug(String slug) {
-        return null;
+        Post post = this.repository.findBySlug(slug);
+        return post;
+    }
+
+    @Override
+    public Post findOne(Long id) {
+        Post post = this.repository.findOne(id);
+        return post;
     }
 
     @Override
