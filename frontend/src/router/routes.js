@@ -1,13 +1,14 @@
-import HomePage from '@/components/HomePage'
-import AddPost from '@/components/AddPost'
-import Single from '@/components/Single'
-import Blog from '@/components/Blog'
+import Home from '@/views/Home';
+import AddPost from '@/views/AddPost';
+import Post from '@/views/Post';
+import Blog from '@/views/Blog';
+import Login from '@/views/Login';
 
 export const routes = [
 	{
 		path: '/',
-		name: 'HomePage',
-		component: HomePage
+		name: 'Home',
+		component: Home
 	},
 	{
 		path: '/blog',
@@ -21,7 +22,12 @@ export const routes = [
 	},
 	{
 		path: '/blog/:slug',
-		name: 'Single',
-		component: Single
+		name: 'Post',
+		component: Post
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: Login
 	}
 ];
