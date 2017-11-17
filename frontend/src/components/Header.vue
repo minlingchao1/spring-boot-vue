@@ -10,12 +10,15 @@
 				<router-link to="/blog">
 					Blog
 				</router-link>
-				<router-link to="/add-post">
+				<router-link v-show="$store.state.isLoggedIn" to="/add-post">
 					Add Post
 				</router-link>
-				<router-link to="/login">
+				<router-link v-show="!$store.state.isLoggedIn" to="/login">
 					Login
 				</router-link>
+				<a href="#" @click.prevent="handleLogout" v-show="$store.state.isLoggedIn">
+					Logout
+				</a>
 			</div>
 		</nav>
 	</header>
@@ -23,7 +26,13 @@
 
 <script>
 export default {
-	name: 'Header'
+	name: 'Header',
+	methods: {
+		handleLogout() {
+			this.$store.dispatch('setToken', null);
+			this.$router.push({ path: '/' });
+		}
+	}
 };
 </script>
 

@@ -3,15 +3,21 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store/store';
+import { sync } from 'vuex-router-sync';
 import VueTruncate from 'vue-truncate-filter';
 
 Vue.config.productionTip = false;
+
 Vue.use(VueTruncate);
+
+sync(store, router);
 
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
 	router,
+	store,
 	template: '<App/>',
 	components: { App }
 });
