@@ -38,6 +38,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> findByAccountId(Long id) {
+        List<Post> posts = new ArrayList<>();
+        Iterable<Post> results = this.repository.findByAccountId(id);
+        results.forEach(room -> {
+            posts.add(room);
+        });
+        return posts;
+    }
+
+    @Override
     public Post findBySlug(String slug) {
         Post post = this.repository.findBySlug(slug);
         return post;
