@@ -1,6 +1,7 @@
 <template>
 	<div class="single-post">
-		<h1>{{post.name}}</h1>
+		<h1 class="single-post__title">{{post.name}}</h1>
+		<div class="single-post__author">Autor: {{post.account.email}}</div>
 		<p>
 			{{post.content}}
 		</p>
@@ -16,7 +17,10 @@ export default {
 		return {
 			post: {
 				name: '',
-				content: ''
+				content: '',
+				account: {
+					email: ''
+				}
 			}
 		};
 	},
@@ -27,3 +31,15 @@ export default {
 	}
 };
 </script>
+
+<style>
+.single-post__title {
+	margin-bottom: 0;
+}
+.single-post__author {
+	margin-bottom: 20px;
+	color: #555;
+	font-size: 12px;
+	font-weight: bold;
+}
+</style>

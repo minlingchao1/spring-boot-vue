@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "ACCOUNT")
 public class Account {
 
+    @JsonIgnore
     @OneToMany(mappedBy = "account")
     private List<Post> posts = new ArrayList<>();
 

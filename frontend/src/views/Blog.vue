@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Post from './Post';
 import PostsService from '@/services/PostsService';
+import Post from '@/components/Post';
 
 export default {
 	name: 'Blog',

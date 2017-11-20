@@ -27,13 +27,13 @@ public class PostController {
 
     @CrossOrigin()
     @RequestMapping(value = "/posts", method = RequestMethod.GET, params = {"slug"})
-    Post findBySlug(@RequestParam(required = false) String slug) {
+    Post findBySlug(@RequestParam() String slug) {
         return postService.findBySlug(slug);
     }
 
     @CrossOrigin()
     @RequestMapping(value = "/posts", method = RequestMethod.GET, params = {"author"})
-    List<Post> findByUserId(@RequestParam(required = false) Long author) {
+    List<Post> findByUserId(@RequestParam() Long author) {
         this.validateUser(author);
         return postService.findByAccountId(author);
     }

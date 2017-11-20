@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "POST")
 public class Post {
-    @JsonIgnore
     @ManyToOne
     private Account account;
 
