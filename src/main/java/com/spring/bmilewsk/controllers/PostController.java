@@ -5,6 +5,7 @@ import com.spring.bmilewsk.services.AccountService;
 import com.spring.bmilewsk.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,26 +20,22 @@ public class PostController {
     @Autowired
     private AccountService accountService;
 
-    @CrossOrigin()
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     List<Post> findAll() {
         return postService.findAll();
     }
 
-    @CrossOrigin()
     @RequestMapping(value = "/posts", method = RequestMethod.GET, params = {"slug"})
     Post findBySlug(@RequestParam() String slug) {
         return postService.findBySlug(slug);
     }
 
-    @CrossOrigin()
     @RequestMapping(value = "/posts", method = RequestMethod.GET, params = {"author"})
     List<Post> findByUserId(@RequestParam() Long author) {
         this.validateUser(author);
         return postService.findByAccountId(author);
     }
 
-    @CrossOrigin()
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
     Post findOne(@PathVariable(value = "id") Long id) {
         return postService.findOne(id);

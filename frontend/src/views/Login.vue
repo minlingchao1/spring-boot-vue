@@ -4,12 +4,12 @@
 			<h1>Login</h1>
 			<form @submit.prevent="handleSubmit">
 				<p>
-					<label>Email</label>
-					<input id="input__text" type="text" placeholder="Email" v-model="email" />
+					<label>Username</label>
+					<input type="text" placeholder="Username" v-model="username" />
 				</p>
 				<p>
 					<label>Password</label>
-					<input id="input__text" type="password" placeholder="Password" v-model="password" />
+					<input type="password" placeholder="Password" v-model="password" />
 				</p>
 				<p>
 					<input type="submit" value="Login"/>
@@ -26,18 +26,26 @@ export default {
 	name: 'Login',
 	data() {
 		return {
-			email: '',
+			username: '',
 			password: ''
 		};
 	},
 	methods: {
 		async handleSubmit() {
-			const response = await AuthenticationService.login({
-				email: this.email,
-				password: this.password
-			});
-			this.$store.dispatch('setToken', '123456');
-			this.$router.push({ path: '/' });
+			try {
+				const response = await AuthenticationService.login({
+					username: this.username,
+					password: this.password
+				});
+				
+				if (response.status === 200) {
+					this.$store.dispatch('setToken', response.data.token);
+					this.$router.push({ path: '/' });
+				}
+			} catch (e) {
+				throw new Error(e);
+			}
+		
 		}
 	}
 };

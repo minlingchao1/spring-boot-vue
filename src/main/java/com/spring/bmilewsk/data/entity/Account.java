@@ -1,6 +1,7 @@
 package com.spring.bmilewsk.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,16 +18,20 @@ public class Account {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
-    @JsonIgnore
     @Column(name = "PASSWORD")
-    public String password;
-    @Column(name = "EMAIL")
-    public String email;
+    private String password;
 
-    public Account(String name, String password) {
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "USERNAME")
+    private String username;
+
+    public Account(String name, String password, String username) {
         this.email = email;
+        this.username = username;
         this.password = password;
     }
 
@@ -49,10 +54,12 @@ public class Account {
         this.id = id;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
@@ -61,7 +68,17 @@ public class Account {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
