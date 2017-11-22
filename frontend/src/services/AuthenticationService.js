@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 class AuthenticationService {
 	static login(data) {
+		console.log(data)
 		return axios.post('http://localhost:4040/login', data);
 	}
 };

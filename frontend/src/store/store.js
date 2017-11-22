@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import AuthenticationService from '@/services/AuthenticationService';
+
 Vue.use(Vuex);
 
 const LOGIN = "LOGIN";
@@ -19,7 +21,10 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		login({ commit }, token) {
+		async login({ commit }, creds) {
+			const repsonse = await AuthenticationService.login(creds);
+			const token = repsonse.data.token;
+
 			localStorage.setItem('token', token);
 			commit(LOGIN, token);
 		},
