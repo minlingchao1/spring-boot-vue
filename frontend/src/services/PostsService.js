@@ -12,7 +12,11 @@ class Posts {
 
 	static save(data) {
 		const url = `posts`;
-		return Api.post(url, data);
+		return Api.post(url, data, {
+			headers: {
+				'Authorization': localStorage.getItem('token')
+			}
+		});
 	}
 };
 

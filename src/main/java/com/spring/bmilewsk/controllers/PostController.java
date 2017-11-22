@@ -1,5 +1,6 @@
 package com.spring.bmilewsk.controllers;
 
+import com.spring.bmilewsk.data.entity.Account;
 import com.spring.bmilewsk.data.entity.Post;
 import com.spring.bmilewsk.services.AccountService;
 import com.spring.bmilewsk.services.PostService;
@@ -25,6 +26,14 @@ public class PostController {
         return postService.findAll();
     }
 
+    @RequestMapping(value = "/posts", method = RequestMethod.POST)
+    Post save(@RequestBody Post post) {
+        Account account = accountService.findById(1L).orElseThrow(
+                () -> new UserNotFoundException(1L));
+
+        return postService.save(new Post(post.name, post.slug, post.content, account));
+    }
+
     @RequestMapping(value = "/posts", method = RequestMethod.GET, params = {"slug"})
     Post findBySlug(@RequestParam() String slug) {
         return postService.findBySlug(slug);
@@ -42,7 +51,7 @@ public class PostController {
     }
 
     private void validateUser(Long author) {
-        this.accountService.findById(author).orElseThrow(
+        accountService.findById(author).orElseThrow(
                 () -> new UserNotFoundException(author));
     }
 

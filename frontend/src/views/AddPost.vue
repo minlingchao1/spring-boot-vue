@@ -35,12 +35,11 @@ export default {
 	},
 	methods: {
 		async handleSubmit () {
-			const data = {
+			const response = await PostsService.save({
 				name: this.name,
 				slug: this.slug,
 				content: this.content
-			};
-			const response = await PostsService.save(data);
+			});
 			console.log(response);
 		}
 	}

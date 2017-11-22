@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findByAccountId(Long id) {
         List<Post> posts = new ArrayList<>();
-        Iterable<Post> results = this.repository.findByAccountId(id);
+        Iterable<Post> results = repository.findByAccountId(id);
         results.forEach(room -> {
             posts.add(room);
         });
@@ -49,19 +49,19 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post findBySlug(String slug) {
-        Post post = this.repository.findBySlug(slug);
+        Post post = repository.findBySlug(slug);
         return post;
     }
 
     @Override
     public Post findOne(Long id) {
-        Post post = this.repository.findOne(id);
+        Post post = repository.findOne(id);
         return post;
     }
 
     @Override
-    public Post create(Post post) {
-        return null;
+    public Post save(Post post){
+        return repository.save(post);
     }
 
     @Override

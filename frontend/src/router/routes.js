@@ -18,7 +18,8 @@ export const routes = [
 	{
 		path: '/add-post',
 		name: 'AddPost',
-		component: AddPost
+		component: AddPost,
+		meta: { requiresAuth: true }
 	},
 	{
 		path: '/blog/:slug',

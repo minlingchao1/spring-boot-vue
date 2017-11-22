@@ -3,21 +3,32 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
+
 export default new Vuex.Store({
-	strict: true,
 	state: {
-		token: null,
-		isLoggedIn: false
+		isLoggedIn: !!localStorage.getItem('token')
 	},
 	mutations: {
-		setToken(state, token) {
-			state.token = token;
-			state.isLoggedIn = token ? true : false;
+		[LOGIN] (state, token) {
+			state.isLoggedIn = true;
+		},
+		[LOGOUT] (state) {
+			state.isLoggedIn = false
 		}
 	},
 	actions: {
-		setToken({ commit }, token) {
-			commit('setToken', token);
+		login({ commit }, token) {
+			localStorage.setItem('token', token);
+			commit(LOGIN, token);
+		},
+		logout({ commit }) {
+			localStorage.removeItem('token');
+			commit(LOGOUT);
 		}
+	},
+	getters: {
+		isLoggedIn: state => state.isLoggedIn
 	}
 });

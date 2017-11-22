@@ -39,13 +39,12 @@ export default {
 				});
 				
 				if (response.status === 200) {
-					this.$store.dispatch('setToken', response.data.token);
+					this.$store.dispatch('login', response.data.token);
 					this.$router.push({ path: '/' });
 				}
 			} catch (e) {
 				throw new Error(e);
 			}
-		
 		}
 	}
 };

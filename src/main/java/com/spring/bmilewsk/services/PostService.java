@@ -10,7 +10,7 @@ public interface PostService {
     Post findBySlug(String slug);
     List<Post> findByAccountId(Long id);
     Post findOne(Long id);
-    Post create(Post post);
+    Post save(Post post);
     Post edit(Post post);
     void deleteBySlug(Long slug);
 }

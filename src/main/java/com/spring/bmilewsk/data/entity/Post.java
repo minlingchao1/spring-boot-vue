@@ -8,20 +8,20 @@ import javax.persistence.*;
 @Table(name = "POST")
 public class Post {
     @ManyToOne
-    private Account account;
+    public Account account;
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    public Long id;
     @Column(name = "NAME")
-    private String name;
+    public String name;
     @Column(name = "SLUG")
-    private String slug;
+    public String slug;
     @Column(name = "CONTENT")
-    private String content;
+    public String content;
 
-    Post(String name, String slug, String content, Account account) {
+    public Post(String name, String slug, String content, Account account) {
         this.name = name;
         this.slug = slug;
         this.content = content;
@@ -31,12 +31,8 @@ public class Post {
     Post() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
